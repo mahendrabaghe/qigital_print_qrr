@@ -53,8 +53,10 @@ builds the frontend and publishes `client/dist`, including the generated
    and optionally add a repository variable named `VITE_API_URL` to override the default
    backend URL `https://print-nazq.onrender.com` (no trailing slash or `/api`). The frontend
    workflow uses this Render URL by default.
-3. In the backend host's environment settings, set `PUBLIC_BASE_URL` to the GitHub Pages
-   site URL, such as `https://your-user.github.io/your-repository`.
+3. In Render, open the service's **Environment** settings and set `PUBLIC_BASE_URL` to
+   `https://mahendrabaghe.github.io/print`, then save and redeploy. Confirm generated QR
+   links start with that URL. Reprint any QR stickers created before this change; printed
+   codes containing a LAN address such as `192.168.x.x` will not work over the internet.
 4. In GitHub, open **Settings → Pages** and choose **GitHub Actions** as the build and
    deployment source. Do not select **Deploy from a branch**; that mode serves the
    repository README instead of the built frontend. Push to `main` or `master`, or run
