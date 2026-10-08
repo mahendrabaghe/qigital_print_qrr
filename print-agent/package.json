@@ -1,0 +1,18 @@
+{
+  "name": "printshop-agent",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local print agent for the Digital Print & Xerox web app. Runs on the shopkeeper's Windows PC, pulls jobs from the cloud server and prints them via SumatraPDF.",
+  "type": "module",
+  "main": "agent.js",
+  "scripts": {
+    "start": "node agent.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "socket.io-client": "^4.8.1"
+  }
+}

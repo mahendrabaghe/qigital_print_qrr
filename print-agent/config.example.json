@@ -1,0 +1,16 @@
+{
+  "serverUrl": "http://localhost:4000",
+  "agentToken": "PASTE-THE-TOKEN-FROM-ADMIN-SETTINGS",
+  "sumatraPath": "C:\\Program Files\\SumatraPDF\\SumatraPDF.exe",
+  "pollIntervalMs": 4000,
+  "printerRefreshMs": 60000,
+  "maxPrintRetries": 2,
+  "logDir": "logs",
+  "tempDir": "",
+  "excludePrinters": [
+    "Microsoft XPS Document Writer",
+    "OneNote (Desktop)",
+    "OneNote Printer",
+    "Fax"
+  ]
+}

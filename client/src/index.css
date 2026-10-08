@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-slate-100 text-slate-800 antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold
+      transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-slate-700 ring-1 ring-slate-300 hover:bg-slate-50;
+  }
+  .btn-danger {
+    @apply btn bg-rose-600 text-white hover:bg-rose-700;
+  }
+  .btn-danger-outline {
+    @apply btn bg-white text-rose-600 ring-1 ring-rose-200 hover:bg-rose-50;
+  }
+  .btn-icon {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-xl text-slate-500
+      ring-1 ring-slate-200 transition hover:bg-slate-50 hover:text-slate-700;
+  }
+  .btn-ghost {
+    @apply btn text-slate-600 hover:bg-slate-200/70;
+  }
+  .card {
+    @apply rounded-2xl bg-white shadow-sm ring-1 ring-slate-200;
+  }
+  .input {
+    @apply w-full rounded-xl border-0 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800
+      ring-1 ring-inset ring-slate-300 placeholder:text-slate-400
+      focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-500;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500;
+  }
+}
+
+/* Cropper.js theming */
+.cropper-view-box {
+  outline: 2px solid theme(colors.brand.500);
+  outline-color: theme(colors.brand.500);
+}
+.cropper-line,
+.cropper-point {
+  background-color: theme(colors.brand.500);
+}
+.cropper-bg {
+  background-image: none;
+  background-color: theme(colors.slate.100);
+}
+
+/* Hide number input spinners for nicer print-settings inputs */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
