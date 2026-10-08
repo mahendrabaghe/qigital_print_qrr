@@ -41,7 +41,7 @@ jobs:
         working-directory: client
         env:
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
-          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_API_URL: ${{ vars.VITE_API_URL || 'https://print-nazq.onrender.com' }}
         run: npm run build
 
       - name: Upload Pages artifact

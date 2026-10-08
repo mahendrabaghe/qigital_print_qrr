@@ -50,10 +50,9 @@ builds the frontend and publishes `client/dist`, including the generated
 
 1. Deploy the backend separately (for example, to Render).
 2. In the GitHub repository, open **Settings → Secrets and variables → Actions → Variables**
-   and add a repository variable named `VITE_API_URL` containing the backend's base URL,
-   such as `https://your-backend.onrender.com` (no trailing slash or `/api`). If this is
-   not configured yet, the frontend will still publish, but API-backed features will not
-   work until you add the variable and redeploy.
+   and optionally add a repository variable named `VITE_API_URL` to override the default
+   backend URL `https://print-nazq.onrender.com` (no trailing slash or `/api`). The frontend
+   workflow uses this Render URL by default.
 3. In the backend host's environment settings, set `PUBLIC_BASE_URL` to the GitHub Pages
    site URL, such as `https://your-user.github.io/your-repository`.
 4. In GitHub, open **Settings → Pages** and choose **GitHub Actions** as the build and
@@ -76,6 +75,13 @@ and a strong admin password when Render requests the unsynced environment variab
 Do not set `MONGODB_URI` to `memory://` in production. After deployment, set the
 GitHub Actions repository variable `VITE_API_URL` to the Render service URL and
 rerun the Pages workflow.
+
+For Atlas connection failures, open the Render service's **Connect → Outbound** details
+and add the listed outbound IP ranges to the Atlas project's **Security → Network
+Access** IP access list. Also confirm the Atlas cluster is running and that `MONGODB_URI`
+uses the correct database username and password; URL-encode special characters in the
+password. Avoid `0.0.0.0/0` except as a brief diagnostic because it permits connections
+from any IP address.
 
 If you are keeping an existing Render Web Service instead of syncing the Blueprint,
 update its settings to use the repository root, set the build command to

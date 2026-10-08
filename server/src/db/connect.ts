@@ -17,7 +17,16 @@ export async function connectDatabase(): Promise<void> {
     return;
   }
 
-  await mongoose.connect(env.mongoUri, { autoIndex: true });
+  try {
+    await mongoose.connect(env.mongoUri, { autoIndex: true });
+  } catch (error) {
+    if (error instanceof Error && error.name === 'MongooseServerSelectionError') {
+      logger.error(
+        'Could not reach MongoDB. For MongoDB Atlas, allow this Render service’s outbound IP ranges in Atlas Network Access, verify the cluster is running, and check that MONGODB_URI uses the correct database user and URL-encoded password.'
+      );
+    }
+    throw error;
+  }
   logger.info(`MongoDB connected → ${mongoose.connection.name}`);
 }
 
