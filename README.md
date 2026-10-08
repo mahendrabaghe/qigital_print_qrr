@@ -51,11 +51,15 @@ builds the frontend and publishes `client/dist`, including the generated
 1. Deploy the backend separately (for example, to Render).
 2. In the GitHub repository, open **Settings → Secrets and variables → Actions → Variables**
    and add a repository variable named `VITE_API_URL` containing the backend's base URL,
-   such as `https://your-backend.onrender.com` (no trailing slash or `/api`).
+   such as `https://your-backend.onrender.com` (no trailing slash or `/api`). If this is
+   not configured yet, the frontend will still publish, but API-backed features will not
+   work until you add the variable and redeploy.
 3. In the backend host's environment settings, set `PUBLIC_BASE_URL` to the GitHub Pages
    site URL, such as `https://your-user.github.io/your-repository`.
 4. In GitHub, open **Settings → Pages** and choose **GitHub Actions** as the build and
-   deployment source. Push to `main` or `master`, or run the workflow manually.
+   deployment source. Do not select **Deploy from a branch**; that mode serves the
+   repository README instead of the built frontend. Push to `main` or `master`, or run
+   the workflow manually.
 
 The API backend must allow requests from the Pages site. Do not put backend secrets in
 `VITE_API_URL` or any other `VITE_*` variable; frontend build variables are public.
