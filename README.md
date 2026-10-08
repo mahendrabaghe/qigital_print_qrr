@@ -64,6 +64,20 @@ builds the frontend and publishes `client/dist`, including the generated
 The API backend must allow requests from the Pages site. Do not put backend secrets in
 `VITE_API_URL` or any other `VITE_*` variable; frontend build variables are public.
 
+## Deploy the backend with Render
+
+The root `render.yaml` configures the web service to use `server/` as its root,
+build with `npm ci && npm run build`, and start with `npm start` (which runs
+`node dist/index.js`). This avoids Render trying to launch a nonexistent root-level
+`server.js`.
+
+To deploy with this configuration, create a Render Blueprint from the repository.
+Provide a MongoDB connection string (for example, from MongoDB Atlas), an admin email,
+and a strong admin password when Render requests the unsynced environment variables.
+Do not set `MONGODB_URI` to `memory://` in production. After deployment, set the
+GitHub Actions repository variable `VITE_API_URL` to the Render service URL and
+rerun the Pages workflow.
+
 Full documentation: see [README.md](./README.md).
 
 ## Architecture
