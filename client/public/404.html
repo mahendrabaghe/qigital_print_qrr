@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      const path = window.location.pathname;
+      const firstSegment = path.split('/').filter(Boolean)[0];
+      const basePath = firstSegment ? `/${firstSegment}/` : '/';
+      const route = path.slice(basePath.length - 1) + window.location.search + window.location.hash;
+      window.location.replace(`${basePath}?p=${encodeURIComponent(route)}`);
+    </script>
+  </head>
+  <body></body>
+</html>

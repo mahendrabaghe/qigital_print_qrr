@@ -41,6 +41,25 @@ LAN IP and the Vite port (for example, `http://192.168.1.20:5173`). Keep
 `VITE_API_URL` and `VITE_SOCKET_URL` empty so requests use Vite's API/socket proxy.
 The phone must be connected to the same Wi-Fi network.
 
+## Deploy the frontend with GitHub Pages
+
+The source `client/index.html` belongs beside the Vite app; do not move it to the
+repository root. The GitHub Actions workflow at `.github/workflows/deploy-pages.yml`
+builds the frontend and publishes `client/dist`, including the generated
+`index.html`. It also supports direct customer/admin links on GitHub Pages.
+
+1. Deploy the backend separately (for example, to Render).
+2. In the GitHub repository, open **Settings → Secrets and variables → Actions → Variables**
+   and add a repository variable named `VITE_API_URL` containing the backend's base URL,
+   such as `https://your-backend.onrender.com` (no trailing slash or `/api`).
+3. In the backend host's environment settings, set `PUBLIC_BASE_URL` to the GitHub Pages
+   site URL, such as `https://your-user.github.io/your-repository`.
+4. In GitHub, open **Settings → Pages** and choose **GitHub Actions** as the build and
+   deployment source. Push to `main` or `master`, or run the workflow manually.
+
+The API backend must allow requests from the Pages site. Do not put backend secrets in
+`VITE_API_URL` or any other `VITE_*` variable; frontend build variables are public.
+
 Full documentation: see [README.md](./README.md).
 
 ## Architecture
