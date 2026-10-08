@@ -66,17 +66,21 @@ The API backend must allow requests from the Pages site. Do not put backend secr
 
 ## Deploy the backend with Render
 
-The root `render.yaml` configures the web service to use `server/` as its root,
-build with `npm ci && npm run build`, and start with `npm start` (which runs
-`node dist/index.js`). This avoids Render trying to launch a nonexistent root-level
-`server.js`.
+The root `render.yaml` configures the web service to build the backend in `server/`
+and start it through the root-level `server.js` launcher. This matches Render's
+repository-root service layout and avoids a missing `server.js` startup error.
 
-To deploy with this configuration, create a Render Blueprint from the repository.
+To deploy with this configuration, create or sync a Render Blueprint from the repository.
 Provide a MongoDB connection string (for example, from MongoDB Atlas), an admin email,
 and a strong admin password when Render requests the unsynced environment variables.
 Do not set `MONGODB_URI` to `memory://` in production. After deployment, set the
 GitHub Actions repository variable `VITE_API_URL` to the Render service URL and
 rerun the Pages workflow.
+
+If you are keeping an existing Render Web Service instead of syncing the Blueprint,
+update its settings to use the repository root, set the build command to
+`npm --prefix server ci && npm --prefix server run build`, and set the start command
+to `node server.js`. Then deploy the latest commit.
 
 Full documentation: see [README.md](./README.md).
 
