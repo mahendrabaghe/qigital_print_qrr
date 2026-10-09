@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { resolvePublicBaseUrl } from './publicBaseUrl';
 
 function num(v: string | undefined, def: number): number {
   const n = parseInt(v ?? '', 10);
@@ -22,7 +23,7 @@ export const env = {
   adminPassword: process.env.ADMIN_PASSWORD || 'ChangeMe123!',
   adminName: process.env.ADMIN_NAME || 'Shop Owner',
   shopName: process.env.SHOP_NAME || 'My Digital Print Shop',
-  publicBaseUrl: (process.env.PUBLIC_BASE_URL || 'http://localhost:5173').replace(/\/+$/, ''),
+  publicBaseUrl: resolvePublicBaseUrl(process.env.PUBLIC_BASE_URL, isProd),
   maxFileSizeMb: num(process.env.MAX_FILE_SIZE_MB, 25),
   fileRetentionHours: num(process.env.FILE_RETENTION_HOURS, 24),
   storageDir: process.env.FILE_STORAGE_DIR || './storage',

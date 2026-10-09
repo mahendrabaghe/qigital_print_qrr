@@ -36,10 +36,12 @@ npm start
 Default admin credentials are set from `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `server/.env`
 (seed runs automatically on first boot; change the password after first login).
 
-For QR codes scanned by phones, set `PUBLIC_BASE_URL` in `server/.env` to the shop PC's
-LAN IP and the Vite port (for example, `http://192.168.1.20:5173`). Keep
-`VITE_API_URL` and `VITE_SOCKET_URL` empty so requests use Vite's API/socket proxy.
-The phone must be connected to the same Wi-Fi network.
+For local development QR scans, set `PUBLIC_BASE_URL` in `server/.env` to the shop PC's
+LAN IP and the Vite port (for example, `http://192.168.1.20:5173`). This local URL only
+works when the phone is on the same Wi-Fi network. For scans over mobile data or other
+networks, deploy the frontend and backend publicly and use their HTTPS URLs as described
+below. Production ignores localhost and private-network `PUBLIC_BASE_URL` values and
+uses the public Pages site instead.
 
 ## Deploy the frontend with GitHub Pages
 
@@ -58,6 +60,7 @@ QR-code URLs can load the client-side routes on GitHub Pages.
    `https://mahendrabaghe.github.io/qigital_print_qrr`, then save and redeploy. Confirm generated QR
    links start with that URL. Reprint any QR stickers created before this change; printed
    codes containing a LAN address such as `192.168.x.x` will not work over the internet.
+   Generate and print new QR codes after changing this setting.
 4. In GitHub, open **Settings → Pages** and choose **GitHub Actions** as the build and
    deployment source. Do not select **Deploy from a branch**; that mode serves the
    repository README instead of the built frontend. Then push to `main` or `master`,
