@@ -45,9 +45,8 @@ The phone must be connected to the same Wi-Fi network.
 
 The source `client/index.html` belongs beside the Vite app; do not move it to the
 repository root. The GitHub Actions workflow at `.github/workflows/deploy-pages.yml`
-sets GitHub Pages to use Actions, builds the frontend, and publishes `client/dist`,
-including the generated `index.html`. It also supports direct customer/admin links
-on GitHub Pages.
+builds the frontend and publishes `client/dist`, including the generated `index.html`.
+It also supports direct customer/admin links on GitHub Pages.
 
 1. Deploy the backend separately (for example, to Render).
 2. In the GitHub repository, open **Settings → Secrets and variables → Actions → Variables**
@@ -58,9 +57,10 @@ on GitHub Pages.
    `https://mahendrabaghe.github.io/qigital_print_qrr`, then save and redeploy. Confirm generated QR
    links start with that URL. Reprint any QR stickers created before this change; printed
    codes containing a LAN address such as `192.168.x.x` will not work over the internet.
-4. Push to `main` or `master`, or run the workflow manually. The workflow configures
-   GitHub Actions as the Pages source so GitHub does not publish the repository README
-   from the branch.
+4. In GitHub, open **Settings → Pages** and choose **GitHub Actions** as the build and
+   deployment source. Do not select **Deploy from a branch**; that mode serves the
+   repository README instead of the built frontend. Then push to `main` or `master`,
+   or run the workflow manually.
 
 The API backend must allow requests from the Pages site. Do not put backend secrets in
 `VITE_API_URL` or any other `VITE_*` variable; frontend build variables are public.
