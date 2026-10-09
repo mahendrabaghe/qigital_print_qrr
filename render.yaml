@@ -17,7 +17,7 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: PUBLIC_BASE_URL
-        value: https://mahendrabaghe.github.io/print
+        value: https://mahendrabaghe.github.io/qigital_print_qrr
       - key: CORS_ORIGINS
         value: https://mahendrabaghe.github.io
       - key: PRINT_MODE
