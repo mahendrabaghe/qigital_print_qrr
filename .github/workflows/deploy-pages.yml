@@ -44,6 +44,10 @@ jobs:
           VITE_API_URL: ${{ vars.VITE_API_URL || 'https://print-nazq.onrender.com' }}
         run: npm run build
 
+      - name: Add GitHub Pages SPA fallback
+        working-directory: client
+        run: cp dist/index.html dist/404.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
